@@ -69,6 +69,7 @@ if (args['fruitmix-only']) {
   let app = new App({
     fruitmix,
     useServer: true,
+    useAlice: !!args['alice'],
   })
 } else {
   let configuration = configurations.wisnuc.winas
@@ -77,7 +78,6 @@ if (args['fruitmix-only']) {
   let app = new App({
     fruitmixOpts,
     configuration,
-    useAlice: !!args['alice'],
     useServer: true,
     listenProcess: true
   })

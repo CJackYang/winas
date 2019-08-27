@@ -289,7 +289,7 @@ class User extends EventEmitter {
     let uuid = UUID.v4()
     this.storeSave(users => {
       let isFirstUser = users.length === 0
-      let { username, winasUserId, phoneNumber } = props // eslint-disable-line
+      let { username, winasUserId, phoneNumber, password } = props // eslint-disable-line
 
       let cU = users.find(u => u.username === username)
       if (cU && cU.status !== USER_STATUS.DELETED) throw new Error('username already exist')
@@ -306,7 +306,8 @@ class User extends EventEmitter {
         createTime: new Date().getTime(),
         lastChangeTime: new Date().getTime(),
         phoneNumber: props.phoneNumber,
-        winasUserId: props.winasUserId // for winas
+        winasUserId: props.winasUserId, // for winas
+        password
       }
 
       return [...users, newUser]
@@ -438,7 +439,7 @@ class User extends EventEmitter {
     if (!isNonNullObject(props)) return callback(Object.assign(new Error('props must be non-null object'), { status: 400 }))
     let recognizedStatus = ['username', 'password', 'phoneNumber', 'winasUserId']
     // by design, can not update anything
-    return callback(Object.assign(new Error('not found'), { status: 404 }))
+    // return callback(Object.assign(new Error('not found'), { status: 404 }))
     
     Object.getOwnPropertyNames(props).forEach(key => {
       if (!recognized.includes(key)) throw Object.assign(new Error(`unrecognized prop name ${key}`), { status: 400 })

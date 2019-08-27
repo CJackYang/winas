@@ -201,6 +201,14 @@ class Fruitmix extends EventEmitter {
     Object.assign(this.apis, { task: this.task, taskNode: this.task.nodeApi })
 
     this.user.on('Update', () => {
+      if (opts.useAlice) {
+        this.user.POST(null, {
+          username: 'alice',
+          password: '123456',
+          phoneNumber: '13399992222'
+        }, console.log.bind(console, 'CREATE ALICE : '))
+      }
+
       process.send && process.send(JSON.stringify({
         type: 'appifi_users',
         users: this.users
