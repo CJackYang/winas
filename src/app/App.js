@@ -374,7 +374,7 @@ class App extends EventEmitter {
 
     routers.push(['/boot', bootr])
 
-    routers.push('/station', stationr)
+    routers.push(['/station', stationr])
 
     // token router
     let tokenr = createTokenRouter(this.auth)
