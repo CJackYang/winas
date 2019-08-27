@@ -164,7 +164,158 @@ class App extends EventEmitter {
     // boot router
     let bootr = express.Router()
     bootr.get('/', (req, res) => 
-      res.status(200).json({}))
+      res.status(200).json({
+        "state": "STARTED",
+        "boundUser": {
+            "winasUserId": "a084ddb6-9990-4eb5-9c59-359838e415aa"
+        },
+        "storage": {
+            "ports": [],
+            "blocks": [
+                {
+                    "name": "sda",
+                    "devname": "/dev/sda",
+                    "path": "/devices/platform/usb@ff600000/ff600000.dwc3/xhci-hcd.0.auto/usb4/4-1/4-1:1.0/host0/target0:0:0/0:0:0:0/block/sda",
+                    "removable": false,
+                    "size": 500118192,
+                    "isDisk": true,
+                    "model": "SATA_SSD",
+                    "serial": "AD740793145A00077729",
+                    "fsUsageDefined": true,
+                    "idFsUsage": "filesystem",
+                    "fileSystemType": "btrfs",
+                    "fileSystemUUID": "440a3683-1b02-4ecd-b064-75732df177ea",
+                    "isFileSystem": true,
+                    "isVolumeDevice": true,
+                    "isBtrfs": true,
+                    "btrfsVolume": "440a3683-1b02-4ecd-b064-75732df177ea",
+                    "btrfsDevice": "edaba335-1426-4072-bb1e-8baf7287a3d7",
+                    "subsystemPath": [
+                        "platform",
+                        "usb",
+                        "scsi"
+                    ],
+                    "idBus": "ata",
+                    "isUSB": true,
+                    "isMounted": true,
+                    "isMountedRO": false,
+                    "mountpoint": "/run/winas/volumes/440a3683-1b02-4ecd-b064-75732df177ea"
+                }
+            ],
+            "volumes": [
+                {
+                    "missing": false,
+                    "devices": [
+                        {
+                            "name": "mmcblk1p1",
+                            "path": "/dev/mmcblk1p1",
+                            "id": 1,
+                            "used": "6.51GiB"
+                        }
+                    ],
+                    "label": "",
+                    "uuid": "e383f6f7-6572-46a9-a7fa-2e0633015231",
+                    "total": 1,
+                    "used": "4.88GiB",
+                    "isVolume": true,
+                    "isMissing": false,
+                    "isFileSystem": true,
+                    "isBtrfs": true,
+                    "fileSystemType": "btrfs",
+                    "fileSystemUUID": "e383f6f7-6572-46a9-a7fa-2e0633015231",
+                    "isMounted": true,
+                    "isMountedRO": false,
+                    "mountpoint": "/run/cowroot/root",
+                    "users": {
+                        "code": "ENOENT",
+                        "message": "fruitmix dir not found"
+                    }
+                },
+                {
+                    "missing": false,
+                    "devices": [
+                        {
+                            "name": "sda",
+                            "path": "/dev/sda",
+                            "id": 1,
+                            "used": "3.06GiB",
+                            "size": 256060514304,
+                            "unallocated": 252772179968,
+                            "system": {
+                                "mode": "DUP",
+                                "size": 67108864
+                            },
+                            "metadata": {
+                                "mode": "DUP",
+                                "size": 2147483648
+                            },
+                            "data": {
+                                "mode": "single",
+                                "size": 1073741824
+                            }
+                        }
+                    ],
+                    "label": "",
+                    "uuid": "440a3683-1b02-4ecd-b064-75732df177ea",
+                    "total": 1,
+                    "used": "1.13GiB",
+                    "isVolume": true,
+                    "isMissing": false,
+                    "isFileSystem": true,
+                    "isBtrfs": true,
+                    "fileSystemType": "btrfs",
+                    "fileSystemUUID": "440a3683-1b02-4ecd-b064-75732df177ea",
+                    "isMounted": true,
+                    "isMountedRO": false,
+                    "mountpoint": "/run/winas/volumes/440a3683-1b02-4ecd-b064-75732df177ea",
+                    "usage": {
+                        "overall": {
+                            "deviceSize": 256060514304,
+                            "deviceAllocated": 3288334336,
+                            "deviceUnallocated": 252772179968,
+                            "deviceMissing": 0,
+                            "used": 1364074496,
+                            "free": 252781412352,
+                            "freeMin": 126395322368,
+                            "dataRatio": "1.00",
+                            "metadataRatio": "2.00",
+                            "globalReserve": 16777216,
+                            "globalReserveUsed": 0
+                        },
+                        "system": {
+                            "devices": [],
+                            "mode": "DUP",
+                            "size": 33554432,
+                            "used": 16384
+                        },
+                        "metadata": {
+                            "devices": [],
+                            "mode": "DUP",
+                            "size": 1073741824,
+                            "used": 149766144
+                        },
+                        "data": {
+                            "devices": [],
+                            "mode": "single",
+                            "size": 1073741824,
+                            "used": 1064509440
+                        },
+                        "unallocated": {
+                            "devices": []
+                        }
+                    },
+                    "users": [
+                        {
+                            "uuid": "bb7fb834-b31b-46af-8b43-7df1ec74c0af",
+                            "username": "17621371636",
+                            "isFirstUser": true,
+                            "winasUserId": "a084ddb6-9990-4eb5-9c59-359838e415aa"
+                        }
+                    ]
+                }
+            ]
+        }
+    }))
 
     bootr.patch('/', (req, res, next) => 
       this.boot.PATCH_BOOT(req.user, req.body, err =>
