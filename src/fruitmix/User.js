@@ -435,7 +435,7 @@ class User extends EventEmitter {
   */
   POST (user, props, callback) {
     if (!isNonNullObject(props)) return callback(Object.assign(new Error('props must be non-null object'), { status: 400 }))
-    let recognizedStatus = ['username', 'password', 'phoneNumber', 'winasUserId']
+    let recognized = ['username', 'password', 'phoneNumber', 'winasUserId']
     // by design, can not update anything
     // return callback(Object.assign(new Error('not found'), { status: 404 }))
     

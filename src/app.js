@@ -51,6 +51,7 @@ let fruitmixOpts = {
   useSmb: !!args.smb,
   useDlna: !!args.dlna,
   useTransmission: !!args.transmission,
+  useAlice: !!args['alice'],
 }
 
 // in standalone mode
@@ -68,8 +69,7 @@ if (args['fruitmix-only']) {
   let fruitmix = new Fruitmix(fruitmixOpts)
   let app = new App({
     fruitmix,
-    useServer: true,
-    useAlice: !!args['alice'],
+    useServer: true
   })
 } else {
   let configuration = configurations.wisnuc.winas
