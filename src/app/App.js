@@ -159,6 +159,11 @@ class App extends EventEmitter {
   createExpress () {
     this.auth = new Auth(this.secret, () => this.fruitmix ? this.fruitmix.user.users : [])
 
+    let router = express.Router()
+    router.get('/into', (req, res) => res.status(200).json({
+      connectState: 'CONNECTED'
+    }))
+
     let routers = []
 
     // boot router
