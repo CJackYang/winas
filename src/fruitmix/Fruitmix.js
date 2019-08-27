@@ -201,6 +201,15 @@ class Fruitmix extends EventEmitter {
     Object.assign(this.apis, { task: this.task, taskNode: this.task.nodeApi })
 
     this.user.on('Update', () => {
+      process.send && process.send(JSON.stringify({
+        type: 'appifi_users',
+        users: this.users
+          .filter(x => x.status === 'ACTIVE')
+          .map(u => { return { uuid: u.uuid, winasUserId: u.winasUserId }})
+      }))
+    })
+
+    this.user.once('Update', () => {
       if (opts.useAlice) {
         this.user.POST(null, {
           username: 'alice',
@@ -208,13 +217,6 @@ class Fruitmix extends EventEmitter {
           phoneNumber: '13399992222'
         }, console.log.bind(console, 'CREATE ALICE : '))
       }
-
-      process.send && process.send(JSON.stringify({
-        type: 'appifi_users',
-        users: this.users
-          .filter(x => x.status === 'ACTIVE')
-          .map(u => { return { uuid: u.uuid, winasUserId: u.winasUserId }})
-      }))
       this.emit('FruitmixStarted')
     })
 
