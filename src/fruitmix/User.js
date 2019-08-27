@@ -247,8 +247,6 @@ class User extends EventEmitter {
 
     this.store.on('Update', (...args) => this.emit('Update', ...args))
 
-    this.once('Update', () => new Pending(this, 200))
-
     Object.defineProperty(this, 'users', {
       get () {
         return this.store.data || []
