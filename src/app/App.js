@@ -160,7 +160,7 @@ class App extends EventEmitter {
     this.auth = new Auth(this.secret, () => this.fruitmix ? this.fruitmix.user.users : [])
 
     let stationr = express.Router()
-    router.get('/info', (req, res) => res.status(200).json({
+    stationr.get('/info', (req, res) => res.status(200).json({
       connectState: 'CONNECTED'
     }))
 
