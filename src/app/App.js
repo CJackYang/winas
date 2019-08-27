@@ -164,7 +164,7 @@ class App extends EventEmitter {
     // boot router
     let bootr = express.Router()
     bootr.get('/', (req, res) => 
-      res.status(200).json(this.boot.view()))
+      res.status(200).json({}))
 
     bootr.patch('/', (req, res, next) => 
       this.boot.PATCH_BOOT(req.user, req.body, err =>
