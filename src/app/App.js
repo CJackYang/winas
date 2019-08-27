@@ -159,8 +159,8 @@ class App extends EventEmitter {
   createExpress () {
     this.auth = new Auth(this.secret, () => this.fruitmix ? this.fruitmix.user.users : [])
 
-    let router = express.Router()
-    router.get('/into', (req, res) => res.status(200).json({
+    let stationr = express.Router()
+    router.get('/info', (req, res) => res.status(200).json({
       connectState: 'CONNECTED'
     }))
 
@@ -373,6 +373,8 @@ class App extends EventEmitter {
     }
 
     routers.push(['/boot', bootr])
+
+    routers.push('/station', stationr)
 
     // token router
     let tokenr = createTokenRouter(this.auth)
